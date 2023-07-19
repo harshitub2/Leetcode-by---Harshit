@@ -17,7 +17,7 @@ class Solution {
         
         for(int i = idx;i<can.length;i++)
         {
-        if(i>idx && can[i]==can[i-1])
+        if(i!=idx && can[i]==can[i-1])
             continue;
             
             if(sum-can[i]<0)
