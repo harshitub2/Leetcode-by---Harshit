@@ -1,25 +1,30 @@
 class Solution {
-    public void backTrack(List<List<Integer>> result,List<Integer> lst,int idx,int[] arr,int sum)
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        combination(res,temp,0,candidates,target);
+        return res;
+    }
+    void combination(List<List<Integer>> res, List<Integer> list, int idx, int can[], int sum)
     {
-        if(sum == 0)
+        
+        if(sum==0)
         {
-            result.add(new ArrayList<>(lst));
+            res.add(new ArrayList<>(list));
             return;
         }
-        for(int i = idx;i<arr.length;i++)
+        for(int i=idx;i<can.length;i++)
         {
-            if(sum - arr[i] >=0)
+            if(sum-can[i]>=0)
             {
-                lst.add(arr[i]);
-                backTrack(result,lst,i,arr,sum-arr[i]);
-                lst.remove(lst.size()-1);
-            }
+                list.add(can[i]);
+                combination(res,list,i,can,sum-can[i]);
+                list.remove(list.size()-1);
+            }        
         }
+        
+        }
+    
     }
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> temp = new ArrayList<>();
-        backTrack(result,temp,0,candidates,target);
-        return result;
-    }
-}
+    
