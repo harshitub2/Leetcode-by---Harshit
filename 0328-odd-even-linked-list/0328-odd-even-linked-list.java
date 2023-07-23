@@ -54,7 +54,7 @@ class Solution {
         }   
         if(odd==null)
         {
-            return even;
+            return odd;
         }
         else
         {
