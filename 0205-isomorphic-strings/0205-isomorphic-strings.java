@@ -15,8 +15,10 @@ class Solution {
                    if(map1.containsKey(t.charAt(i)))
                        return false;
                    else
+                   {
                        map.put(s.charAt(i),t.charAt(i));
                    map1.put(t.charAt(i),true);
+                   }
                    
                }
         }
