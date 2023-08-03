@@ -1,14 +1,1 @@
-# Write your MySQL query statement below
-SELECT product_id, 10 AS price
-FROM Products
-GROUP BY product_id
-HAVING MIN(change_date) > '2019-08-16'
-UNION
-SELECT P.product_id, P.new_price AS price
-FROM Products P
-INNER JOIN (
-  SELECT product_id, MAX(change_date) AS max_date
-  FROM Products
-  WHERE change_date <= '2019-08-16'
-  GROUP BY product_id
-) AS A ON P.product_id = A.product_id AND P.change_date = A.max_date;
+select product_id,10 as price from Products group by product_id having min(change_date)>'2019-08-16' union select P.product_id, P.new_price as price from Products P join (select product_id,max(change_date) as ch_date from Products where  change_date <='2019-08-16'  group by product_id) as A on P.product_id=A.product_id and P.change_date=A.ch_date;
