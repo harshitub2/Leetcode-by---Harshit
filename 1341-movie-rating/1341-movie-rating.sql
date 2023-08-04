@@ -2,12 +2,12 @@ SELECT results
 FROM (
     SELECT IFNULL(u.name, '') AS results, COUNT( r.movie_id) AS num_movies
     FROM Users u
-    LEFT JOIN MovieRating r ON u.user_id = r.user_id
+    inner JOIN MovieRating r ON u.user_id = r.user_id
     GROUP BY u.user_id
     ORDER BY num_movies DESC, u.name ASC
     LIMIT 1
 ) AS user_ratings
-UNION ALL
+UNION all
 SELECT results
 FROM (
     SELECT IFNULL(m.title, '') AS results, AVG(r.rating) AS avg_rating
