@@ -1,6 +1,6 @@
 SELECT results
 FROM (
-    SELECT IFNULL(u.name, '') AS results, COUNT(DISTINCT r.movie_id) AS num_movies
+    SELECT IFNULL(u.name, '') AS results, COUNT( r.movie_id) AS num_movies
     FROM Users u
     LEFT JOIN MovieRating r ON u.user_id = r.user_id
     GROUP BY u.user_id
