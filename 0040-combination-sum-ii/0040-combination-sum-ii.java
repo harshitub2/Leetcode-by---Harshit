@@ -1,36 +1,31 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+          // Write your code here.
+        // Write your code here.
         Arrays.sort(candidates);
-        List<List<Integer>> al = new ArrayList<>();
-        List<Integer> temp = new ArrayList<>();
-        comb(al,temp,0,candidates,target);
-        return al;
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        subset(candidates,0,target,list,ans);
+        return ans;
     }
-    void comb(List<List<Integer>> res,List<Integer> list,int idx,int can[],int sum)
+    static void subset(int arr[],int idx, int k, List<Integer> list, List<List<Integer>> ans)
     {
-        
-        if(sum==0)
+        if(k==0)
         {
-            res.add(new ArrayList<>(list));
-            return;
+                ans.add(new ArrayList<>(list));
+                return;
         }
-        
-        for(int i = idx;i<can.length;i++)
+        for(int i=idx;i<arr.length;i++)
         {
-        if(i!=idx && can[i]==can[i-1])
-            continue;
-            
-            if(sum-can[i]<0)
-            {
+            if(i>idx && arr[i]==arr[i-1])
+                continue;
+            if(arr[i]>k)
                 break;
-            }
-                list.add(can[i]);
-                comb(res,list,i+1,can,sum-can[i]);
-                list.remove(list.size()-1);
-                
+            list.add(arr[i]);
+            subset(arr,i+1,k-arr[i],list,ans);
+            list.remove(list.size()-1);
             
         }
+
     }
-    
-    
 }
