@@ -25,7 +25,7 @@ class Solution {
             }
             return;
         }
-        for(int i = n-1;i>=index;i--)
+        for(int i = n-1;i>index;i--)
         {
             if(nums[i]>nums[index])
             {
