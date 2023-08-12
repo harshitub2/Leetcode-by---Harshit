@@ -9,9 +9,9 @@ class Solution {
             for(int j=0;j<n;j++)
             {
                 
-                if(i>0 && ans[i-1][j]!=-1)
+                if(i>0)// && ans[i-1][j]!=-1)
                     ans[i][j]=ans[i-1][j];
-                if(j>0 && ans[i][j-1]!=-1)
+                if(j>0) //&& ans[i][j-1]!=-1)
                     ans[i][j]+=ans[i][j-1];
                 if(obstacleGrid[i][j]==1)
                     ans[i][j]=0;
