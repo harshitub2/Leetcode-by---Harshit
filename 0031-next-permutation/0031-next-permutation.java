@@ -22,8 +22,8 @@ class Solution {
                 low++;
                 high--;
                 
-            }
-            return;
+            }return;
+            
         }
         for(int i = n-1;i>index;i--)
         {
