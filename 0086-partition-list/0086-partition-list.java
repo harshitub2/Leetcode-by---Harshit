@@ -19,7 +19,7 @@ class Solution {
         
         while(curr!=null)
         {
-            ListNode temp = curr.next;
+           
             if(curr.val<x)
             {
                 first.next=curr;
@@ -29,10 +29,11 @@ class Solution {
             {
                 second.next = curr;
                 second = curr;
-                second.next=null;
+                
             }
-            curr=temp;
+            curr=curr.next;
         }
+        second.next=null;
         first.next=temp2.next;
         return temp1.next;
         
