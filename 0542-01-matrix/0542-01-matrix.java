@@ -12,7 +12,7 @@ class Solution {
                 if(mat[i][j]==0)
                 {
                     vis[i][j]=1;
-                    dis[i][j]=1;
+                   // dis[i][j]=1;
                     q.add(new int[]{i,j,0});
                     
                 }
