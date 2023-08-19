@@ -40,28 +40,36 @@ class Solution
     public static int maxMeetings(int start[], int end[], int n)
     {
         // add your code here
-        
+     
 
-        int[][] arr = new int[n][2];  // Declare and initialize as a 2D array
+        int arr[][] = new int[n][2];
         
-        for (int i = 0; i < n; i++) {
-            arr[i][0] = start[i];
-            arr[i][1] = end[i];
-        }
-        
+            for(int i=0;i<start.length;i++)
+            {
+                arr[i][0]=start[i];
+                arr[i][1]=end[i];
+            }
         Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[1])
                           .thenComparingInt(a -> a[0]));
 
-        int count = 1;
-        int i = 1;
-        int j = 0;
-        while (i < n) {
-            if (arr[i][0] > arr[j][1]) {
-                count++;
-                j = i;
+
+            int count =1;
+            int i =1;
+            int j =0;
+            while(i<n)
+            {
+                if(arr[i][0]>arr[j][1])
+                {
+                    count++;
+                    j=i;
+                    i++;
+                    
+                }
+                else
+                {
+                i++;
+                }
             }
-            i++;
-        }
 
         return count;
     }
