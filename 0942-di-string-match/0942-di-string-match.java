@@ -16,7 +16,7 @@ class Solution {
                 high--;
             }
         }
-        ans[s.length()]=high;
+        ans[s.length()]=low;
         return ans;
     }
 }
