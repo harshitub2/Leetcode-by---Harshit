@@ -122,7 +122,7 @@ class GfG
     Node flatten(Node root)
     {
 	// Your code here
-	if(root.next==null)
+	if(root==null || root.next==null)
 	return root;
 	
 	root.next = flatten(root.next);
