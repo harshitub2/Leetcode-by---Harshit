@@ -1,22 +1,17 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int arr[][] = new int[m+1][n+1];
-        return paths(m,n,arr);
-    }
-        
-        int paths(int m, int n, int[][] arr)
+        int prev[] = new int[n];
+        prev[0]=1;
+        for(int i=0;i<m;i++)
         {
-        if(m<0 || n<0)
-            return 0;
-            if(m==1 && n==1)
-                return 1;
-            if(arr[m][n]!=0)
-                return arr[m][n];
-            
-            arr[m][n]=paths(m-1,n,arr) + paths(m,n-1,arr);
-            return arr[m][n];
+            int temp[] = new int[n];
+            temp[0]=prev[0];
+            for(int j=1;j<n;j++)
+            {
+                temp[j]=prev[j]+temp[j-1];
+            }
+            prev = temp;
         }
-        
-        
-    
+        return prev[n-1];
+    }
 }
