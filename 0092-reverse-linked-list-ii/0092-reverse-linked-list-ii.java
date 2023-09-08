@@ -17,32 +17,31 @@ class Solution {
             count++;
             curr=curr.next;
         }
-        curr=head;
+        curr = head;
         ListNode arr[] = new ListNode[count];
-        for(int i=0;i<arr.length;i++)
+        for(int i=0;i<count;i++)
         {
             arr[i]=curr;
             curr=curr.next;
         }
-       int l = left-1;
-        int r=right -1;
-        while(l<=r)
+        int l = left-1;
+        int r = right -1;
+        while(l<r)
         {
-            ListNode temp =arr[l];
+            ListNode temp = arr[l];
             arr[l]=arr[r];
             arr[r]=temp;
             l++;
             r--;
         }
         ListNode node = arr[0];
-        curr=node;
-        for(int i=1;i<arr.length;i++)
+        curr = node;
+        for(int i=1;i<count;i++)
         {
             curr.next=arr[i];
             curr=curr.next;
         }
-        curr.next=null;
+        curr.next = null;
         return node;
-        
     }
 }
