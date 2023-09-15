@@ -1,30 +1,32 @@
 class Solution {
     public int candy(int[] ratings) {
-    int candy[] = new int[ratings.length];
-        
-        candy[0]=1;
-        for(int i=1;i<candy.length;i++)
-        {
-        if(ratings[i]>ratings[i-1])
-        {
-            candy[i]=candy[i-1]+1;
+        int n = ratings.length;
+        if (n <= 1) {
+            return n;
         }
-            else
-                candy[i]=1;
+
+        int[] candies = new int[n];
+        Arrays.fill(candies, 1);
+
+        // Forward pass: Give more candies to the right if the ratings increase
+        for (int i = 1; i < n; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                candies[i] = candies[i - 1] + 1;
+            }
         }
-        
-        int res =candy[candy.length-1];
-        
-        for(int i=candy.length-2;i>=0;i--)
-        {
-            int curr =1;
-        if(ratings[i]>ratings[i+1])     
-        {
-            curr = candy[i+1]+1;
+
+        // Backward pass: Give more candies to the left if the ratings increase
+        for (int i = n - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1]) {
+                candies[i] = Math.max(candies[i], candies[i + 1] + 1);
+            }
         }
-            res+=Math.max(candy[i],curr);
-            candy[i]=curr;
+
+        int totalCandies = 0;
+        for (int candy : candies) {
+            totalCandies += candy;
         }
-        return res;
+
+        return totalCandies;
     }
 }
