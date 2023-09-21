@@ -11,7 +11,7 @@ class Solution {
             queue.add(new int[]{0,i,d});
         }
         int cost =0;
-        while( count>0)
+        while(!queue.isEmpty() && count>0)
         {
             int row[] = queue.poll();
             int v1 = row[0];
