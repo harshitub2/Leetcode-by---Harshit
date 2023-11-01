@@ -14,45 +14,39 @@
  * }
  */
 class Solution {
-    HashMap<Integer,Integer> map = new HashMap<>();
+    Map<Integer,Integer> map = new HashMap<>();
+    List<Integer> al = new ArrayList<>();
+    int mode =0;
     public int[] findMode(TreeNode root) {
-        dfs(root);
-        List<Integer> al = new ArrayList<>();
-        int maxfreq = -1;
-        for(int key:map.keySet())
+        inorder(root);
+        for(int key : map.keySet())
         {
-            int freq = map.get(key);
-            if(maxfreq<freq)
+            if(map.get(key)>mode)
             {
                 al.clear();
-            maxfreq = freq;
-            al.add(key);
-                continue;
-            }
-            if(maxfreq==freq)
                 al.add(key);
-            
+                mode=map.get(key);
+            }
+            else if(map.get(key)==mode)
+            {
+                al.add(key);
+            }
         }
-        int arr[] = new int[al.size()];
-        for(int i=0;i<al.size();i++)
+       int ans[] = new int[al.size()];
+        for(int i=0;i<ans.length;i++)
         {
-            arr[i]=al.get(i);
+            ans[i]=al.get(i);
         }
-        return arr;
         
-
+        return ans;
     }
-    
-    void dfs(TreeNode root)
+    void inorder(TreeNode root)
     {
         if(root!=null)
         {
-            map.put(root.val,map.getOrDefault(root.val,0)+1);
-        
-        dfs(root.left);
-        dfs(root.right);
+        map.put(root.val,map.getOrDefault(root.val,0)+1);
+        inorder(root.left);
+        inorder(root.right);
         }
     }
-    
-    
 }
