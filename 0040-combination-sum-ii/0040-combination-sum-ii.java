@@ -1,31 +1,23 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-          // Write your code here.
-        // Write your code here.
-        Arrays.sort(candidates);
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        subset(candidates,0,target,list,ans);
-        return ans;
+      Arrays.sort(candidates);
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> path = new ArrayList<Integer>();
+    dfs_com(candidates, 0, target, path, res);
+    return res;
+}
+void dfs_com(int[] cand, int cur, int target, List<Integer> path, List<List<Integer>> res) {
+    if (target == 0) {
+        res.add(new ArrayList(path));
+        return ;
     }
-    static void subset(int arr[],int idx, int k, List<Integer> list, List<List<Integer>> ans)
-    {
-        if(k==0)
-        {
-                ans.add(new ArrayList<>(list));
-                return;
-        }
-        for(int i=idx;i<arr.length;i++)
-        {
-            if(i>idx && arr[i]==arr[i-1])
-                continue;
-            if(arr[i]>k)
-                break;
-            list.add(arr[i]);
-            subset(arr,i+1,k-arr[i],list,ans);
-            list.remove(list.size()-1);
-            
-        }
-
+    if (target < 0) return;
+    for (int i = cur; i < cand.length; i++){
+        if (i > cur && cand[i] == cand[i-1]) continue;
+        path.add(path.size(), cand[i]);
+        dfs_com(cand, i+1, target - cand[i], path, res);
+        path.remove(path.size()-1);
+    }
+  
     }
 }
